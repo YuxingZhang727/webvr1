@@ -44,7 +44,7 @@
   <script type="module">
     import * as THREE from "three";
     import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-    import { SparkRenderer, SplatMesh, SparkControls, SparkXr, textSplats, dyno, utils } from "@sparkjsdev/spark";
+    import { SparkRenderer, SplatMesh, SparkControls, SparkXr, utils } from "@sparkjsdev/spark";
     import GUI from "lil-gui";
 
     const RENDER_TIMEOUT_MS = 5 * 1000;
@@ -53,8 +53,8 @@
     const scene = new THREE.Scene();
     // scene.background = new THREE.Color(0.75, 1.0, 1.0);
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 1000);
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setPixelRatio(window.devicePixelRatio);
+    const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance" });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.25));
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
@@ -66,7 +66,7 @@
     // Lower the splat rendering width to sqrt(5) std devs for more performance
     const spark = new SparkRenderer({
       renderer,
-      maxStdDev: Math.sqrt(5),
+      maxStdDev: 2,
     });
     scene.add(spark);
     localFrame.add(camera);
@@ -224,8 +224,6 @@
     // localFrame.add(xr.makeJointSplats(SparkXr.Hand.right));
 
     let lastTime = 0;
-    let rotation = 0;
-    let xrTime = 0;
 
     // gui.add({ disableRender: () => {
     //   renderEnabled = false;
