@@ -16,13 +16,14 @@
     #audio-toggle {
       position: fixed;
       top: 16px;
-      left: 16px;
+      left: 140px;
       z-index: 10;
       border: 1px solid #444;
       background: #111;
       color: #fff;
       padding: 10px 14px;
       cursor: pointer;
+      font-family: inherit;
     }
   </style>
 </head>
@@ -142,9 +143,10 @@
     // Load meshes (GLB/GLTF)
     async function attachPositionalAudio(model, url, volume = 0.8) {
       const audio = new THREE.PositionalAudio(listener);
-      audio.setRefDistance(2);
-      audio.setMaxDistance(20);
-      audio.setRolloffFactor(1);
+      audio.setRefDistance(1.4);
+      audio.setMaxDistance(14);
+      audio.setRolloffFactor(1.3);
+      audio.setDistanceModel("linear");
       audio.setLoop(true);
       audio.setVolume(volume);
 
@@ -152,6 +154,7 @@
       audio.setBuffer(buffer);
       model.add(audio);
       positionalAudios.push(audio);
+      window.currentAudio = audio;
     }
     const gltfLoader = new GLTFLoader();
     for (const mesh of meshes) {
@@ -234,16 +237,21 @@
     toggleButton.addEventListener("click", async () => {
       await listener.context.resume();
 
+      if (positionalAudios.length === 0) {
+        return;
+      }
+
       const anyPlaying = positionalAudios.some((audio) => audio.isPlaying);
       for (const audio of positionalAudios) {
         if (anyPlaying) {
           audio.pause();
         } else {
+          audio.setVolume(0.8);
           audio.play();
         }
       }
 
-      toggleButton.textContent = anyPlaying ? "Play Audio" : "Pause Audio";
+      toggleButton.textContent = anyPlaying ? "Play Eating Sound" : "Pause Eating Sound";
     });
 
     document.addEventListener("keydown", (event) => {
@@ -287,6 +295,7 @@
 
       stats.end();
     });
+    toggleButton.textContent = "Play Eating Sound";
   </script>
 </body>
 
