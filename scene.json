@@ -1,0 +1,40 @@
+{
+  "splats": [
+    {
+      "filename": "modern-atrium-with-greenery.spz",
+      "transform": {
+        "translation": [
+          0,
+          0.6388499736785889,
+          0
+        ],
+        "rotation": [
+          180,
+          0,
+          0
+        ],
+        "quaternion": [
+          1,
+          0,
+          0,
+          6.123233995736767e-17
+        ],
+        "scale": 1.1099954843521118
+      }
+    }
+  ],
+  "metadata": {
+    "exportTimestamp": "2026-03-17T13:23:21.640Z",
+    "spzExportVersion": 3
+  },
+  "meshes": [
+  {
+    "filename": "meshes/pizzabox.glb",
+    "transform": {
+      "translation": [0.5, -1.12, -3.4],
+      "quaternion": [0, 0, 0, 1],
+      "scale": [0.15, 0.15, 0.15]
+    }
+  }
+  ]
+}
