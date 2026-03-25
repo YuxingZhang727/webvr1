@@ -1,0 +1,30 @@
+{
+  "splats": [
+    {
+      "filename": "movie-theater-popcorn-clapboard.spz",
+      "transform": {
+        "translation": [
+          0,
+          1.1467857360839844,
+          0
+        ],
+        "rotation": [
+          180,
+          0,
+          0
+        ],
+        "quaternion": [
+          1,
+          0,
+          0,
+          6.123233995736766e-17
+        ],
+        "scale": 1.2608046531677246
+      }
+    }
+  ],
+  "metadata": {
+    "exportTimestamp": "2026-03-25T20:46:20.888Z",
+    "spzExportVersion": 2
+  }
+}
